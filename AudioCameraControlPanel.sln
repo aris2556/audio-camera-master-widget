@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioCameraControlPanel", "AudioCameraControlPanel\AudioCameraControlPanel.csproj", "{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioCameraControlPanel.Tests", "AudioCameraControlPanel.Tests\AudioCameraControlPanel.Tests.csproj", "{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Debug|x64.Build.0 = Debug|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Debug|x86.Build.0 = Debug|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Release|x64.ActiveCfg = Release|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Release|x64.Build.0 = Release|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Release|x86.ActiveCfg = Release|Any CPU
+		{02A8F63A-D4D2-4950-A864-B00AEE0F7EE9}.Release|x86.Build.0 = Release|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Debug|x64.Build.0 = Debug|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Debug|x86.Build.0 = Debug|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Release|x64.ActiveCfg = Release|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Release|x64.Build.0 = Release|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Release|x86.ActiveCfg = Release|Any CPU
+		{2DAB147F-B749-4C3C-BCD1-F9FCA4A15CDD}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

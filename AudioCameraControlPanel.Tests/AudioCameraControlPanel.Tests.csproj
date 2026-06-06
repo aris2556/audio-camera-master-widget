@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      Compile the non-XAML app source directly so tests can run on machines where
+      local application-control policy blocks loading the WinExe assembly from test output.
+      The app project still builds separately in the solution, so XAML/resource issues are covered.
+    -->
+    <Compile Include="..\AudioCameraControlPanel\Models\**\*.cs" LinkBase="AppSource\Models" />
+    <Compile Include="..\AudioCameraControlPanel\Services\**\*.cs" LinkBase="AppSource\Services" />
+    <Compile Include="..\AudioCameraControlPanel\ViewModels\**\*.cs" LinkBase="AppSource\ViewModels" />
+  </ItemGroup>
+
+</Project>
