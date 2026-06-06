@@ -1,31 +1,21 @@
 # Audio Camera Master Widget
 
-A Windows 11 WPF desktop app that opens the compact master widget directly.
+Windows WPF app for local audio endpoint controls, microphone metering, camera preview, and Windows settings shortcuts.
 
-## Stack
+The app starts with the compact master widget. The full control panel can be opened from that widget.
 
-- C# / .NET 8
-- WPF
-- Core Audio MMDevice / WASAPI endpoint APIs for render and capture devices
-- MSTest for non-hardware behavior tests
+## Requirements
 
-No admin rights are required.
+- Windows.
+- .NET 10 SDK to build this repo, as selected by `global.json`.
+- .NET 8 Windows Desktop Runtime to run framework-dependent builds.
+- NSIS `makensis.exe` only when building the installer.
 
-## Features
+The app targets `net8.0-windows10.0.19041.0`.
 
-- Starts directly in the master widget instead of the full control panel.
-- Opens the full control panel on demand from the master widget while keeping widget state shared.
-- Lists output/render audio devices and the selected microphone/input device.
-- Reads and sets endpoint volume through `IAudioEndpointVolume` when available.
-- Provides quick output and input volume presets: 0%, 30%, 45%, and 60%.
-- Reads and sets endpoint mute through `IAudioEndpointVolume` when available.
-- Shows a live microphone/input peak meter when available.
-- Opens native Windows settings pages for sound, app volume, camera, camera privacy, and microphone privacy.
-- Persists the last selected output, input, and camera IDs under `%LOCALAPPDATA%\AudioCameraControlPanel\settings.json`.
+## Build And Test
 
-## Build
-
-From this directory in Windows PowerShell:
+Run from this directory in Windows PowerShell:
 
 ```powershell
 dotnet restore AudioCameraControlPanel.sln
@@ -33,11 +23,17 @@ dotnet build AudioCameraControlPanel.sln --no-restore
 dotnet test AudioCameraControlPanel.sln --no-build
 ```
 
-SDK selection is pinned by `global.json` to the .NET 10 SDK feature band. The app targets `net8.0-windows`, so install the .NET 8 Desktop Runtime on machines that run the app.
+Generated outputs are ignored by git:
 
-## Run
+```text
+bin/
+obj/
+artifacts/
+tools/
+TestResults/
+```
 
-From Windows PowerShell:
+## Run From Source
 
 ```powershell
 dotnet run --project AudioCameraControlPanel\AudioCameraControlPanel.csproj
@@ -45,31 +41,27 @@ dotnet run --project AudioCameraControlPanel\AudioCameraControlPanel.csproj
 
 ## Publish
 
-Framework-dependent Windows x64 single-file desktop publish:
+Framework-dependent single-file publish:
 
 ```powershell
 dotnet publish AudioCameraControlPanel\AudioCameraControlPanel.csproj -c Release -r win-x64 --self-contained false /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
 ```
 
-The published app is written to:
+Self-contained single-file publish:
 
-```text
-AudioCameraControlPanel/bin/Release/net8.0-windows10.0.19041.0/win-x64/publish/
+```powershell
+dotnet publish AudioCameraControlPanel\AudioCameraControlPanel.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true -o artifacts\publish-win-x64
 ```
 
-Run `AudioCameraMasterWidget.exe` from that folder.
+The NSIS installer script uses the self-contained publish output in:
 
-The default publish uses a single-file executable because some Windows Application Control policies block loading unsigned loose app DLLs from local publish folders.
+```text
+artifacts\publish-win-x64
+```
 
 ## Installer
 
-The NSIS installer installs per-user to:
-
-```text
-%LOCALAPPDATA%\Programs\AudioCameraMasterWidget
-```
-
-Build the installer from Windows PowerShell:
+Build the installer:
 
 ```powershell
 .\scripts\build-installer.ps1
@@ -81,18 +73,75 @@ The installer is written to:
 artifacts\AudioCameraMasterWidgetSetup.exe
 ```
 
-If `makensis.exe` is not installed globally, the build script also checks `tools\nsis-msys2\mingw32\bin\makensis.exe`.
+The installer installs per-user to:
 
-The installer is unsigned. If Windows Application Control or Smart App Control blocks unsigned local apps, the durable fix is to sign the installer and app executable with a trusted code-signing certificate or relax that policy for this app.
+```text
+%LOCALAPPDATA%\Programs\AudioCameraMasterWidget
+```
 
-### WSL or non-Windows cross-targeting
+The Start Menu folder is:
 
-Windows PowerShell on Windows is the primary path for build, run, test, and publish. From WSL or another non-Windows environment, restore/build/test/publish only as cross-targeting operations and add `/p:EnableWindowsTargeting=true` to the commands above. Running the WPF app still requires Windows.
+```text
+%APPDATA%\Microsoft\Windows\Start Menu\Programs\Audio Camera Master Widget
+```
+
+The desktop shortcut is:
+
+```text
+%USERPROFILE%\Desktop\Audio Camera Master Widget.lnk
+```
+
+`scripts\build-installer.ps1` looks for `makensis.exe` in:
+
+```text
+tools\nsis-msys2\mingw32\bin\makensis.exe
+```
+
+If that file is not present, it uses `makensis.exe` from `PATH`.
+
+## Features
+
+- Lists active output and input audio devices.
+- Shows the default output and input endpoint reported by Windows.
+- Reads endpoint volume and mute state when available.
+- Sets endpoint volume and mute state when available.
+- Provides 0%, 30%, 45%, and 60% volume preset buttons.
+- Shows a live microphone peak meter when available.
+- Lists local cameras.
+- Starts and stops local camera preview.
+- Opens Windows settings pages for sound, app volume, camera, camera privacy, and microphone privacy.
+- Stores the last selected output, input, and camera IDs.
+
+## Stored Data
+
+Settings are stored at:
+
+```text
+%LOCALAPPDATA%\AudioCameraControlPanel\settings.json
+```
+
+The settings file stores device IDs only. It does not store audio, video, or images.
+
+## Implementation Notes
+
+- Audio device enumeration uses Core Audio MMDevice APIs.
+- Endpoint volume and mute use `IAudioEndpointVolume`.
+- Audio device/default changes use `IMMNotificationClient`.
+- Endpoint volume/mute changes use `IAudioEndpointVolumeCallback`.
+- Camera enumeration and preview use WinRT media capture APIs.
+- Tests use MSTest and fake hardware services.
+- CI runs on `windows-latest`.
+
+## Code Signing
+
+The app and installer are unsigned.
+
+Windows Application Control, Smart App Control, or enterprise code integrity policy can block unsigned executables or DLLs. The repo does not include a signing certificate.
 
 ## Limitations
 
-- Setting the Windows default audio device is not implemented. Windows does not expose a stable public desktop API for changing the default endpoint, so the widget provides Windows Sound Settings shortcuts instead.
-- Compact widgets are regular WPF desktop windows, not integrations with the Windows Widgets board.
-- The master widget intentionally omits camera preview and does not start camera capture; it only links to camera settings/privacy.
-- Some microphones or audio endpoints may not expose endpoint volume, mute, or metering controls. The UI disables unsupported controls and shows a status message.
-- If the app does not start on another PC, install the .NET 8 Desktop Runtime or publish self-contained with `--self-contained true`.
+- The app does not change the Windows default audio device.
+- Some devices do not expose endpoint volume, mute, or metering controls.
+- Compact widgets are normal WPF windows, not Windows Widgets board integrations.
+- Camera preview is local only. The app does not record or save camera frames.
+- Building or running the WPF app requires Windows. Non-Windows environments can only cross-target with `/p:EnableWindowsTargeting=true`.
