@@ -8,7 +8,11 @@ Security fixes are handled on the latest released version.
 
 Do not open a public issue with exploit details, private device identifiers, or sensitive logs.
 
-Use GitHub private vulnerability reporting if it is enabled for this repository. If that option is not available, open a minimal public issue asking for a private contact path and omit technical exploit details until a private channel is available.
+Use GitHub private vulnerability reporting:
+
+```text
+https://github.com/omar-dulaimi/audio-camera-master-widget/security/advisories/new
+```
 
 Please include:
 
