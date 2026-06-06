@@ -212,7 +212,7 @@ Pull requests and pushes to `main` run:
 .github/workflows/windows-ci.yml
 ```
 
-The CI workflow restores, builds, and tests on `windows-latest`.
+The CI workflow restores, builds, and tests on `windows-2025`.
 
 ## Contributing
 
