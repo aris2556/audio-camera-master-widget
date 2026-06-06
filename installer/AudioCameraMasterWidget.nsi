@@ -1,7 +1,7 @@
 Unicode true
 
 !define APP_NAME "Audio Camera Master Widget"
-!define APP_PUBLISHER "Local"
+!define APP_PUBLISHER "Audio Camera Master Widget"
 !ifndef APP_VERSION
 !define APP_VERSION "1.0.0"
 !endif
@@ -28,7 +28,7 @@ VIAddVersionKey "CompanyName" "${APP_PUBLISHER}"
 VIAddVersionKey "FileDescription" "${APP_NAME} Installer"
 VIAddVersionKey "FileVersion" "${APP_VERSION}"
 VIAddVersionKey "ProductVersion" "${APP_VERSION}"
-VIAddVersionKey "LegalCopyright" "Copyright 2026"
+VIAddVersionKey "LegalCopyright" "Copyright 2026 Omar Dulaimi"
 
 Page directory
 Page instfiles

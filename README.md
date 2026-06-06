@@ -6,7 +6,7 @@ The app starts with the compact master widget. The full control panel opens from
 
 ## Install
 
-Download the installer from the private GitHub Releases page:
+Download the installer from GitHub Releases:
 
 ```text
 https://github.com/omar-dulaimi/audio-camera-master-widget/releases
@@ -70,8 +70,7 @@ Use **Uninstall Audio Camera Master Widget** from the Start Menu folder, or run:
 
 ## User Prerequisites
 
-- Windows.
-- Access to this private GitHub repository to download releases.
+- Windows 10 or Windows 11 on x64 hardware.
 
 The release installer is self-contained. It does not require a separate .NET runtime install.
 
@@ -214,6 +213,20 @@ Pull requests and pushes to `main` run:
 ```
 
 The CI workflow restores, builds, and tests on `windows-latest`.
+
+## Contributing
+
+Issues and pull requests are welcome. See `CONTRIBUTING.md` for local setup, test commands, and pull request expectations.
+
+Do not post private device IDs, logs, screenshots, or vulnerability details in public issues.
+
+## Security
+
+See `SECURITY.md` for vulnerability reporting guidance.
+
+## License
+
+This project is licensed under the MIT License. See `LICENSE`.
 
 ## Implementation Notes
 
