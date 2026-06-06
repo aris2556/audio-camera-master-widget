@@ -35,7 +35,11 @@ dotnet publish $projectPath `
     /p:InformationalVersion=$Version `
     /p:PublishSingleFile=true `
     /p:IncludeNativeLibrariesForSelfExtract=true `
+    /p:DebugType=none `
+    /p:DebugSymbols=false `
     -o $publishDir
+
+Get-ChildItem -LiteralPath $publishDir -Recurse -Filter "*.pdb" | Remove-Item -Force
 
 $makensisPath = $makensisCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
 if ([string]::IsNullOrWhiteSpace($makensisPath)) {
