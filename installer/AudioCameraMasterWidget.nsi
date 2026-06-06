@@ -2,7 +2,12 @@ Unicode true
 
 !define APP_NAME "Audio Camera Master Widget"
 !define APP_PUBLISHER "Local"
+!ifndef APP_VERSION
 !define APP_VERSION "1.0.0"
+!endif
+!ifndef APP_PRODUCT_VERSION
+!define APP_PRODUCT_VERSION "1.0.0.0"
+!endif
 !define APP_EXE "AudioCameraMasterWidget.exe"
 !define APP_REG_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioCameraMasterWidget"
 !define SOURCE_DIR "..\artifacts\publish-win-x64"
@@ -17,7 +22,7 @@ SetCompressor /SOLID lzma
 Icon "..\AudioCameraControlPanel\Assets\AppIcon.ico"
 UninstallIcon "..\AudioCameraControlPanel\Assets\AppIcon.ico"
 
-VIProductVersion "1.0.0.0"
+VIProductVersion "${APP_PRODUCT_VERSION}"
 VIAddVersionKey "ProductName" "${APP_NAME}"
 VIAddVersionKey "CompanyName" "${APP_PUBLISHER}"
 VIAddVersionKey "FileDescription" "${APP_NAME} Installer"
